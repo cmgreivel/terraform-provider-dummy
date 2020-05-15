@@ -15,3 +15,7 @@ We have a provider that can be built using
 
 The binary can be invoked but does nothing.
 `$ ./terraform-provider-dummy`
+
+# Step 2
+
+The provider now includes a resource, but still does nothing.
