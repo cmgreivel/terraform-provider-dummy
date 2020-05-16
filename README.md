@@ -1,13 +1,14 @@
 # terraform-provider-dummy
-Simple Terraform provider for a tutorial
+Simple Terraform provider for a tutorial.
 
 Generally follows [Terraform documentation](https://www.terraform.io/docs/extend/writing-custom-providers.html)
 
 # Steps
 
-- [ ] Create initial buildable version of compiler
+- [ ] Create initial buildable version of provider
 - [ ] Add resource to the provider
 - [ ] Add functioning create and read methods
+- [ ] Provider can be configured to specify directory
 
 # Step 1
 
@@ -38,7 +39,7 @@ The above example is for Mac.
 Alternatively, we can specify the path to the provider on the command line when doing `terraform init`.
 
 ```
-$ terraform init -plugin-dir=\`pwd\`
+$ terraform init -plugin-dir=`pwd`
 $ terraform validate
 $ terraform plan
 $ terraform apply
@@ -51,4 +52,19 @@ dummy_file.my_file: Creation complete after 0s [id=/var/folders/d9/0fpnfyr91k5_7
 ```
 
 We can verify the contents are as expected.
+
+# Step 4
+
+We can now configure the provider to use a specific directory.
+
+We have also rearranged the source directory structure for better maintainability.
+
+Try `terraform validate`, `terraform plan`, and `terraform apply` with different
+values for `directory` in `main.tf`. You can try a non-existent directory name or
+the name of a file to see what happens.
+```
+provider dummy {
+  directory = "/tmp"
+}
+```
 

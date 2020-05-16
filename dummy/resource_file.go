@@ -1,4 +1,4 @@
-package main
+package dummy
 
 import (
 	"io/ioutil"
@@ -18,16 +18,15 @@ func resourceFile() *schema.Resource {
 }
 
 func resourceFileCreate(d *schema.ResourceData, m interface{}) error {
-	dirName, err := ioutil.TempDir("", "terraform-provider-dummy")
 
-	if err != nil {
-		return err
-	}
+	log.Println("[DEBUG] resourceFileCreate")
 
-	fullPath := filepath.Join(dirName, "step3.txt")
+	config := m.(Config)
+
+	fullPath := filepath.Join(config.Directory, "step3.txt")
 	data := []byte("Test string\n")
 
-	err = ioutil.WriteFile(fullPath, data, 0644)
+	err := ioutil.WriteFile(fullPath, data, 0644)
 	if err != nil {
 		return err
 	}
