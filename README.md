@@ -9,6 +9,7 @@ Generally follows [Terraform documentation](https://www.terraform.io/docs/extend
 - [ ] Add resource to the provider
 - [ ] Add functioning create and read methods
 - [ ] Provider can be configured to specify directory
+- [ ] File name and contents can be specified for a resource
 
 # Step 1
 
@@ -55,7 +56,7 @@ We can verify the contents are as expected.
 
 # Step 4
 
-We can now configure the provider to use a specific directory.
+We can configure the provider to use a specific directory.
 
 We have also rearranged the source directory structure for better maintainability.
 
@@ -65,6 +66,19 @@ the name of a file to see what happens.
 ```
 provider dummy {
   directory = "/tmp"
+}
+```
+
+# Step 5
+
+The file name and contents can be specified as input variables to the resource.
+Changing `contents` in `main.tf` will only modify the existing file. Changing `file_name`
+will destroy an existing resource and create a new one.
+
+```
+resource dummy_file my_file {
+  file_name = "file.tmp"
+  contents  = "initial contents\n"
 }
 ```
 
