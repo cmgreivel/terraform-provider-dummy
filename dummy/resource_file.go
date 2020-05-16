@@ -9,6 +9,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 )
@@ -37,6 +38,11 @@ func resourceFile() *schema.Resource {
 
 const filePerm os.FileMode = 0644
 
+func formatCreationLine() string {
+	now := time.Now()
+	return "CREATION: " + now.Format(time.UnixDate) + "\n"
+}
+
 func formatContentsLine(c string) (string, error) {
 	if len(c) == 0 {
 		return "", errors.New("Cannot have empty string for contents")
@@ -55,11 +61,13 @@ func resourceFileCreate(d *schema.ResourceData, m interface{}) error {
 	contents := d.Get("contents").(string)
 
 	fullPath := filepath.Join(config.Directory, fileName)
-	cLine, err := formatContentsLine(contents)
+
+	creationLine := formatCreationLine()
+	contentLine, err := formatContentsLine(contents)
 	if err != nil {
 		return err
 	}
-	data := []byte(cLine)
+	data := []byte(creationLine + contentLine)
 
 	err = ioutil.WriteFile(fullPath, data, filePerm)
 	if err != nil {
@@ -98,6 +106,8 @@ func resourceFileUpdate(d *schema.ResourceData, m interface{}) error {
 		newContents := ""
 		for scanner.Scan() {
 			line := scanner.Text()
+			// Put the newline back on. It was stripped by the scanner.
+			line = line + "\n"
 			if strings.Contains(line, "CONTENTS:") {
 				// Replace the CONTENTS string
 				line, err = formatContentsLine(d.Get("contents").(string))
