@@ -82,3 +82,20 @@ resource dummy_file my_file {
 }
 ```
 
+# Step 6
+
+Both unit tests and acceptance tests have been added.
+
+All tests will be run via
+```
+$ go test -v ./dummy/...
+```
+but acceptance tests require `TF_ACC` environment variable to be set for them to run.
+
+Acceptance tests can be run with 
+```
+TF_ACC=1 go test -v ./dummy/... -run="TestAcc"
+```
+The provider directory for unit tests is specified through the `DUMMY_PROVIDER_DIRECTORY`
+environment variable.
+

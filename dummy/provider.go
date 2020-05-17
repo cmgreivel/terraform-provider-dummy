@@ -16,9 +16,10 @@ func Provider() *schema.Provider {
 	return &schema.Provider{
 		Schema: map[string]*schema.Schema{
 			"directory": &schema.Schema{
-				Type:        schema.TypeString,
-				Required:    true,
+				DefaultFunc: schema.EnvDefaultFunc("DUMMY_PROVIDER_DIRECTORY", nil),
 				Description: "Directory for file creation",
+				Required:    true,
+				Type:        schema.TypeString,
 			},
 		},
 		ResourcesMap: map[string]*schema.Resource{
