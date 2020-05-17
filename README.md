@@ -1,15 +1,29 @@
 # terraform-provider-dummy
-Simple Terraform provider for a tutorial.
 
-Generally follows [Terraform documentation](https://www.terraform.io/docs/extend/writing-custom-providers.html)
+## Introduction
+Simple Terraform provider for a tutorial. The provider is a directory, and the provider's 
+resource is a file.
+
+Generally follows [Terraform documentation](https://www.terraform.io/docs/extend/writing-custom-providers.html).
+
+## Additional References
+- [Terraform plugin SDK docs](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk)
+- [Terraform plugin SDK source](https://github.com/hashicorp/terraform-plugin-sdk)
+- [Example open source providers](https://github.com/terraform-providers)
+- [Posts about writing custom providers](https://github.com/shuaibiyy/awesome-terraform#writing-custom-providers). Note thatthese may be slightly out of date, but the concepts are still applicable.
+- [Provider for NetBox](https://github.com/cmgreivel/terraform-provider-netbox)
+
+## Notes
+This has all been developed on MacOS. There are not anticipated issues with other OSes.
 
 # Steps
 
-- [ ] Create initial buildable version of provider
-- [ ] Add resource to the provider
-- [ ] Add functioning create and read methods
-- [ ] Provider can be configured to specify directory
-- [ ] File name and contents can be specified for a resource
+- [x] Create initial buildable version of provider
+- [x] Add resource to the provider
+- [x] Add functioning create and read methods
+- [x] Provider can be configured to specify directory
+- [x] File name and contents can be specified for a resource
+- [x] Unit and acceptance tests added
 
 # Step 1
 
@@ -99,3 +113,7 @@ TF_ACC=1 go test -v ./dummy/... -run="TestAcc"
 The provider directory for unit tests is specified through the `DUMMY_PROVIDER_DIRECTORY`
 environment variable.
 
+# Unresolved Issues
+- Versioning
+- How to specify the go module for a non-Github repo
+- Best way to build and distribute for all platforms
