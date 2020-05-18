@@ -1,13 +1,29 @@
 # terraform-provider-dummy
-Simple Terraform provider for a tutorial
 
-Generally follows [Terraform documentation](https://www.terraform.io/docs/extend/writing-custom-providers.html)
+## Introduction
+Simple Terraform provider for a tutorial. The provider is a directory, and the provider's 
+resource is a file.
+
+Generally follows [Terraform documentation](https://www.terraform.io/docs/extend/writing-custom-providers.html).
+
+## Additional References
+- [Terraform plugin SDK docs](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk)
+- [Terraform plugin SDK source](https://github.com/hashicorp/terraform-plugin-sdk)
+- [Example open source providers](https://github.com/terraform-providers)
+- [Posts about writing custom providers](https://github.com/shuaibiyy/awesome-terraform#writing-custom-providers). Note thatthese may be slightly out of date, but the concepts are still applicable.
+- [Provider for NetBox](https://github.com/cmgreivel/terraform-provider-netbox)
+
+## Notes
+This has all been developed on MacOS. There are not anticipated issues with other OSes.
 
 # Steps
 
-- [ ] Create initial buildable version of compiler
-- [ ] Add resource to the provider
-- [ ] Add functioning create and read methods
+- [x] Create initial buildable version of provider
+- [x] Add resource to the provider
+- [x] Add functioning create and read methods
+- [ ] Provider can be configured to specify directory
+- [ ] File name and contents can be specified for a resource
+- [ ] Unit and acceptance tests added
 
 # Step 1
 
@@ -38,7 +54,7 @@ The above example is for Mac.
 Alternatively, we can specify the path to the provider on the command line when doing `terraform init`.
 
 ```
-$ terraform init -plugin-dir=\`pwd\`
+$ terraform init -plugin-dir=`pwd`
 $ terraform validate
 $ terraform plan
 $ terraform apply
