@@ -22,7 +22,7 @@ This has all been developed on MacOS. There are not anticipated issues with othe
 - [x] Add resource to the provider
 - [x] Add functioning create and read methods
 - [x] Provider can be configured to specify directory
-- [ ] File name and contents can be specified for a resource
+- [x] File name and contents can be specified for a resource
 - [ ] Unit and acceptance tests added
 
 # Step 1
@@ -80,6 +80,19 @@ the name of a file to see what happens.
 ```
 provider dummy {
   directory = "/tmp"
+}
+```
+
+# Step 5
+
+The file name and contents can be specified as input variables to the resource.
+Changing `contents` in `main.tf` will only modify the existing file. Changing `file_name`
+will destroy an existing resource and create a new one.
+
+```
+resource dummy_file my_file {
+  file_name = "file.tmp"
+  contents  = "initial contents\n"
 }
 ```
 
