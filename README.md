@@ -110,7 +110,7 @@ Acceptance tests can be run with
 ```
 TF_ACC=1 go test -v ./dummy/... -run="TestAcc"
 ```
-The provider directory for unit tests is specified through the `DUMMY_PROVIDER_DIRECTORY`
+1The provider directory for unit tests is specified through the `DUMMY_PROVIDER_DIRECTORY`
 environment variable.
 
 # Unresolved Issues
