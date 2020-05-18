@@ -21,7 +21,7 @@ This has all been developed on MacOS. There are not anticipated issues with othe
 - [x] Create initial buildable version of provider
 - [x] Add resource to the provider
 - [x] Add functioning create and read methods
-- [ ] Provider can be configured to specify directory
+- [x] Provider can be configured to specify directory
 - [ ] File name and contents can be specified for a resource
 - [ ] Unit and acceptance tests added
 
@@ -67,4 +67,19 @@ dummy_file.my_file: Creation complete after 0s [id=/var/folders/d9/0fpnfyr91k5_7
 ```
 
 We can verify the contents are as expected.
+
+# Step 4
+
+We can configure the provider to use a specific directory.
+
+We have also rearranged the source directory structure for better maintainability.
+
+Try `terraform validate`, `terraform plan`, and `terraform apply` with different
+values for `directory` in `main.tf`. You can try a non-existent directory name or
+the name of a file to see what happens.
+```
+provider dummy {
+  directory = "/tmp"
+}
+```
 
