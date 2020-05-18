@@ -40,7 +40,7 @@ const filePerm os.FileMode = 0644
 
 func formatCreationLine() string {
 	now := time.Now()
-	return "CREATION: " + now.Format(time.UnixDate) + "\n"
+	return "CREATION: " + now.Format("2006-01-02 15:04:05.000000000 MST") + "\n"
 }
 
 func formatContentsLine(c string) (string, error) {

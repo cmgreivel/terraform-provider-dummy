@@ -23,7 +23,7 @@ This has all been developed on MacOS. There are not anticipated issues with othe
 - [x] Add functioning create and read methods
 - [x] Provider can be configured to specify directory
 - [x] File name and contents can be specified for a resource
-- [ ] Unit and acceptance tests added
+- [x] Unit and acceptance tests added
 
 # Step 1
 
@@ -96,3 +96,24 @@ resource dummy_file my_file {
 }
 ```
 
+# Step 6
+
+Both unit tests and acceptance tests have been added.
+
+All tests will be run via
+```
+$ go test -v ./dummy/...
+```
+but acceptance tests require `TF_ACC` environment variable to be set for them to run.
+
+Acceptance tests can be run with 
+```
+TF_ACC=1 go test -v ./dummy/... -run="TestAcc"
+```
+1The provider directory for unit tests is specified through the `DUMMY_PROVIDER_DIRECTORY`
+environment variable.
+
+# Unresolved Issues
+- Versioning
+- How to specify the go module for a non-Github repo
+- Best way to build and distribute for all platforms
